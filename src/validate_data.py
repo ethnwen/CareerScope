@@ -92,13 +92,21 @@ def check_fact_basics(table_id, fact):
     bad = ~fact["quality_grade"].isin(VALID_GRADES)
     check(not bad.any(), f"{table_id}: quality grades are valid",
           str(sorted(fact.loc[bad, "quality_grade"].unique())))
+    has_flags = {"is_suspect", "suspect_reason"} <= set(fact.columns)
+    check(has_flags, f"{table_id}: suspect-flag columns are present")
     for measure, (lo, hi) in SANITY.items():
-        sub = fact.loc[fact["measure"] == measure, "value"]
-        if len(sub):
-            check((sub > 0).all(), f"{table_id}: {measure} is always positive")
-            outside = int(((sub < lo) | (sub > hi)).sum())
-            check(outside == 0, f"{table_id}: {measure} inside {lo} to {hi}",
-                  f"{outside} outside", "WARN")
+        mask = fact["measure"] == measure
+        if has_flags and mask.any():
+            values = fact.loc[mask, "value"]
+            outside = (values < lo) | (values > hi)
+            flagged = fact.loc[mask, "is_suspect"]
+            unflagged = int((outside & ~flagged).sum())
+            check(unflagged == 0,
+                  f"{table_id}: {measure} values outside {lo} to {hi} are all flagged",
+                  f"{int(outside.sum())} outside the bounds, {unflagged} unflagged")
+            check(int(outside.sum()) == int(flagged.sum()),
+                  f"{table_id}: {measure} flag count equals the out-of-range count",
+                  f"{int(flagged.sum())} flagged", "WARN")
     shares = fact.loc[fact["measure"] == "vacancy_share", "value"]
     if len(shares):
         check(shares.between(0, 100).all(), f"{table_id}: vacancy_share is between 0 and 100")

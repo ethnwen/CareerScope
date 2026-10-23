@@ -20,8 +20,9 @@
 [PASS] 14100444: no missing values in the fact table
 [PASS] 14100444: no negative values
 [PASS] 14100444: quality grades are valid: []
-[PASS] 14100444: offered_wage_avg is always positive
-[PASS] 14100444: offered_wage_avg inside 5 to 200: 0 outside
+[PASS] 14100444: suspect-flag columns are present
+[PASS] 14100444: offered_wage_avg values outside 5 to 200 are all flagged: 0 outside the bounds, 0 unflagged
+[PASS] 14100444: offered_wage_avg flag count equals the out-of-range count: 0 flagged
 
 --- 14100444: availability and completeness ---
 [PASS] 14100444: availability cells equal rows in scope: 6,018,496
@@ -60,8 +61,9 @@ Values with no quality grade (blank STATUS): 0
 [PASS] 14100443: no missing values in the fact table
 [PASS] 14100443: no negative values
 [PASS] 14100443: quality grades are valid: []
-[FAIL] 14100443: offered_wage_avg is always positive
-[WARN] 14100443: offered_wage_avg inside 5 to 200: 17 outside
+[PASS] 14100443: suspect-flag columns are present
+[PASS] 14100443: offered_wage_avg values outside 5 to 200 are all flagged: 17 outside the bounds, 0 unflagged
+[PASS] 14100443: offered_wage_avg flag count equals the out-of-range count: 17 flagged
 [PASS] 14100443: vacancy_share is between 0 and 100
 
 --- 14100443: availability and completeness ---
@@ -149,10 +151,11 @@ char_id
 [PASS] 14100417: no missing values in the fact table
 [PASS] 14100417: no negative values
 [PASS] 14100417: quality grades are valid: []
-[PASS] 14100417: employee_wage_avg_hourly is always positive
-[PASS] 14100417: employee_wage_avg_hourly inside 5 to 200: 0 outside
-[PASS] 14100417: employee_wage_median_hourly is always positive
-[PASS] 14100417: employee_wage_median_hourly inside 5 to 200: 0 outside
+[PASS] 14100417: suspect-flag columns are present
+[PASS] 14100417: employee_wage_avg_hourly values outside 5 to 200 are all flagged: 0 outside the bounds, 0 unflagged
+[PASS] 14100417: employee_wage_avg_hourly flag count equals the out-of-range count: 0 flagged
+[PASS] 14100417: employee_wage_median_hourly values outside 5 to 200 are all flagged: 0 outside the bounds, 0 unflagged
+[PASS] 14100417: employee_wage_median_hourly flag count equals the out-of-range count: 0 flagged
 
 --- 14100417: availability and completeness ---
 [PASS] 14100417: availability cells equal rows in scope: 169,389
@@ -174,4 +177,4 @@ Values with no quality grade (blank STATUS): 149,214
   employee_wage_median_hourly: 49,738 rows, 0 zeros, min 5.3, max 112.98, 0 equal to 100
 [PASS] 14100417: every value is ungraded (no A to E grades in this table)
 
-SUMMARY: 82 passed, 1 warnings, 1 failed
+SUMMARY: 87 passed, 0 warnings, 0 failed

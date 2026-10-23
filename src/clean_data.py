@@ -226,6 +226,25 @@ def expected_noc_labels(noc):
             for r in noc.itertuples()}
 
 
+# Sanity bounds for hourly wages in dollars. These are assumptions, not statistics.
+# Values outside them are flagged and kept in the file, never changed or dropped.
+WAGE_BOUNDS = {"offered_wage_avg": (5, 200), "employee_wage_avg_hourly": (5, 200),
+               "employee_wage_median_hourly": (5, 200)}
+
+
+def flag_suspect(fact):
+    """Add is_suspect and suspect_reason columns to a fact table."""
+    reason = pd.Series("", index=fact.index)
+    for measure, (low, high) in WAGE_BOUNDS.items():
+        is_measure = fact["measure"] == measure
+        reason[is_measure & (fact["value"] < low)] = f"wage_below_{low}"
+        reason[is_measure & (fact["value"] > high)] = f"wage_above_{high}"
+    fact = fact.copy()
+    fact["is_suspect"] = reason != ""
+    fact["suspect_reason"] = reason
+    return fact
+
+
 class Output:
     """Writes fact rows to a temporary file and accumulates availability counts."""
 
@@ -240,6 +259,7 @@ class Output:
         self.rows_read = self.rows_written = 0
 
     def add(self, fact, avail_frame, keys):
+        fact = flag_suspect(fact)
         fact.to_csv(self.tmp, mode="a", header=self.header, index=False)
         self.header = False
         self.rows_written += len(fact)
