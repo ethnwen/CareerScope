@@ -1,0 +1,177 @@
+=== DIMENSION TABLES ===
+[PASS] dim_geography: geo_id is unique
+[PASS] dim_geography: 83 geographies: found 83
+[PASS] dim_geography: parents exist
+[PASS] dim_geography: 1 Canada, 13 provinces/territories, 69 economic regions: {'Economic region': 69, 'Province/territory': 13, 'Canada': 1}
+[PASS] dim_occupation: noc_id is unique
+[PASS] dim_occupation: level counts match NOC 2021: {0: 2, 1: 10, 2: 45, 3: 89, 4: 162, 5: 516}
+[PASS] dim_occupation: parents exist
+[PASS] dim_occupation: occupation codes are unique
+[PASS] dim_characteristic: char_id is unique
+[PASS] dim_characteristic: 48 members: found 48
+[PASS] dim_characteristic: parents exist
+[PASS] dim_occupation_0417: codes are unique
+
+=== FACT TABLES ===
+
+--- 14100444: structure and values ---
+[PASS] 14100444: fact table is not empty: 1,250,123 rows
+[PASS] 14100444: composite key is unique: 0 duplicates on ['period_start', 'geo_id', 'noc_id', 'measure']
+[PASS] 14100444: no missing values in the fact table
+[PASS] 14100444: no negative values
+[PASS] 14100444: quality grades are valid: []
+[PASS] 14100444: offered_wage_avg is always positive
+[PASS] 14100444: offered_wage_avg inside 5 to 200: 0 outside
+
+--- 14100444: availability and completeness ---
+[PASS] 14100444: availability cells equal rows in scope: 6,018,496
+[PASS] 14100444: fact rows equal availability 'value' cells: 1,250,123 vs 1,250,123
+[PASS] 14100444: not_available count matches the cleaning summary: 2,775,542
+[PASS] 14100444: suppressed count matches the cleaning summary: 268,982
+[PASS] 14100444: unreliable count matches the cleaning summary: 1,723,849
+Periods in scope: 44 (2015-01-01 to 2026-04-01)
+[PASS] 14100444: 44 quarters, with Q2 and Q3 2020 absent
+[PASS] 14100444: matches Phase 1 count for rows_with_value: 1,250,123
+[PASS] 14100444: matches Phase 1 count for not_available: 2,775,542
+[PASS] 14100444: matches Phase 1 count for suppressed: 268,982
+[PASS] 14100444: matches Phase 1 count for unreliable: 1,723,849
+[PASS] 14100444: availability covers the full grid: expected 6,018,496
+[PASS] 14100444: all geo_id exist in dim_geography
+[PASS] 14100444: all noc_id exist in dim_occupation
+
+--- 14100444: true zeros and ungraded (blank STATUS) values ---
+Zero values by measure and grade:
+measure        quality_grade
+job_vacancies  A                  30
+               B                 106
+               C                1315
+               D                1725
+               E                3402
+Values with no quality grade (blank STATUS): 0
+[PASS] 14100444: no blank-STATUS values (Phase 1 expectation)
+
+--- 14100444: hierarchy additivity (job vacancies) ---
+[PASS] occupation hierarchy: published children never exceed the parent: 264,533 parent cells tested, 0 violations, worst excess 10.0
+[PASS] geography hierarchy (all occupations): published children never exceed the parent: 611 parent cells tested, 0 violations, worst excess 15.0
+
+--- 14100443: structure and values ---
+[PASS] 14100443: fact table is not empty: 3,344,531 rows
+[PASS] 14100443: composite key is unique: 0 duplicates on ['period_start', 'geo_id', 'noc_id', 'char_id', 'measure']
+[PASS] 14100443: no missing values in the fact table
+[PASS] 14100443: no negative values
+[PASS] 14100443: quality grades are valid: []
+[FAIL] 14100443: offered_wage_avg is always positive
+[WARN] 14100443: offered_wage_avg inside 5 to 200: 17 outside
+[PASS] 14100443: vacancy_share is between 0 and 100
+
+--- 14100443: availability and completeness ---
+[PASS] 14100443: availability cells equal rows in scope: 6,745,200
+[PASS] 14100443: fact rows equal availability 'value' cells: 3,344,531 vs 3,344,531
+[PASS] 14100443: not_available count matches the cleaning summary: 1,559,836
+[PASS] 14100443: suppressed count matches the cleaning summary: 286,483
+[PASS] 14100443: unreliable count matches the cleaning summary: 1,554,350
+Periods in scope: 44 (2015-01-01 to 2026-04-01)
+[PASS] 14100443: 44 quarters, with Q2 and Q3 2020 absent
+[PASS] 14100443: availability covers the full in-scope grid: expected 6,745,200
+[PASS] 14100443: all geo_id exist in dim_geography
+[PASS] 14100443: all noc_id exist in dim_occupation
+[PASS] 14100443: all char_id exist in dim_characteristic
+
+--- 14100443: true zeros and ungraded (blank STATUS) values ---
+Zero values by measure and grade:
+measure           quality_grade
+job_vacancies     A                  3272
+                  B                   508
+                  C                   496
+                  D                  3810
+                  E                 11752
+                  NONE             217185
+offered_wage_avg  A                     1
+vacancy_share     A                     6
+                  B                    27
+                  C                    43
+                  D                   247
+                  E                   869
+                  NONE             213507
+Values with no quality grade (blank STATUS): 790,375
+  job_vacancies: 217,185 rows, 217,185 zeros, min 0.0, max 0.0, 0 equal to 100
+  vacancy_share: 573,190 rows, 213,507 zeros, min 0.0, max 100.0, 359,683 equal to 100
+
+--- 14100443: additivity within each characteristic dimension ---
+[PASS] dimension totals have a share of 100: 359,683 tested, 0 off
+[PASS] shares sum to 100 within 0.5 points: Type of work: 35,485 complete sets, 0 failures, worst deviation 0.00
+[PASS] counts add up to the total within 15: Type of work: 48,271 tested, 0 exceed the total, 0 of 29,953 complete sets differ
+[PASS] shares sum to 100 within 0.5 points: Education: 9,665 complete sets, 0 failures, worst deviation 0.20
+[PASS] counts add up to the total within 35: Education: 48,953 tested, 0 exceed the total, 0 of 8,182 complete sets differ
+[PASS] shares sum to 100 within 0.5 points: Experience: 11,039 complete sets, 0 failures, worst deviation 0.20
+[PASS] counts add up to the total within 30: Experience: 48,187 tested, 0 exceed the total, 0 of 9,249 complete sets differ
+[PASS] shares sum to 100 within 0.5 points: Type of position: 35,180 complete sets, 0 failures, worst deviation 0.00
+[PASS] counts add up to the total within 15: Type of position: 46,732 tested, 0 exceed the total, 0 of 30,913 complete sets differ
+[PASS] shares sum to 100 within 0.5 points: Continuity of recruitment: 22,420 complete sets, 0 failures, worst deviation 0.00
+[PASS] counts add up to the total within 15: Continuity of recruitment: 26,262 tested, 0 exceed the total, 0 of 18,515 complete sets differ
+
+--- 14100443: first and last quarter with data, per characteristic (Canada, all occupations, job vacancies) ---
+                         dimension                                                            char_title       first        last  quarters
+char_id                                                                                                                                   
+1                     Type of work                                               Type of work, all types  2015-01-01  2026-04-01        44
+2                     Type of work                                                             Full-time  2015-01-01  2026-04-01        44
+3                     Type of work                                                             Part-time  2015-01-01  2026-04-01        44
+4                        Education                       Minimum level of education required, all levels  2015-01-01  2026-04-01        44
+5                        Education                                No minimum level of education required  2015-01-01  2026-04-01        44
+6                        Education                                     High school diploma or equivalent  2015-01-01  2026-04-01        44
+7                        Education                                 Non-university certificate or diploma  2015-01-01  2026-04-01        44
+8                        Education           Trade certificate or diploma, or apprenticeship certificate  2015-01-01  2026-04-01        44
+9                        Education        College, CEGEP and other non-university certificate or diploma  2015-01-01  2026-04-01        44
+10                       Education              University certificate or diploma below bachelor's level  2015-01-01  2026-04-01        44
+12                       Education                                                     Bachelor's degree  2015-01-01  2026-04-01        44
+13                       Education  University certificate, diploma or degree above the bachelor's level  2015-01-01  2026-04-01        44
+17                      Experience                           Minimum experience level sought, all levels  2015-01-01  2026-04-01        44
+18                      Experience                                                      Less than 1 year  2015-01-01  2026-04-01        44
+19                      Experience                                           1 year to less than 3 years  2015-01-01  2026-04-01        44
+20                      Experience                                          3 years to less than 5 years  2015-01-01  2026-04-01        44
+21                      Experience                                          5 years to less than 8 years  2015-01-01  2026-04-01        44
+22                      Experience                                                       8 years or more  2015-01-01  2026-04-01        44
+47       Continuity of recruitment                             Continuity of recruitment, all categories  2020-01-01  2026-04-01        24
+48       Continuity of recruitment                                                 Constantly recruiting  2020-01-01  2026-04-01        24
+49       Continuity of recruitment                                             Not constantly recruiting  2020-01-01  2026-04-01        24
+30                Type of position                                           Type of position, all types  2015-01-01  2026-04-01        44
+31                Type of position                                                             Permanent  2015-01-01  2026-04-01        44
+32                Type of position                                 Temporary (seasonal and non-seasonal)  2015-01-01  2026-04-01        44
+33                Type of position                                                              Seasonal  2015-01-01  2026-04-01        44
+
+--- Cross-table reconciliation: 0444 vs 0443 (all occupations, same geography and quarter) ---
+[PASS] 0444 and 0443 agree on job_vacancies (tolerance 5): 611 pairs compared, 0 differ, max difference 0.0
+[PASS] 0444 and 0443 agree on offered_wage_avg (tolerance 0.05): 616 pairs compared, 0 differ, max difference 0.0
+
+--- 14100417: structure and values ---
+[PASS] 14100417: fact table is not empty: 149,214 rows
+[PASS] 14100417: composite key is unique: 0 duplicates on ['period_start', 'geo_id', 'noc417_code', 'type_of_work', 'measure']
+[PASS] 14100417: no missing values in the fact table
+[PASS] 14100417: no negative values
+[PASS] 14100417: quality grades are valid: []
+[PASS] 14100417: employee_wage_avg_hourly is always positive
+[PASS] 14100417: employee_wage_avg_hourly inside 5 to 200: 0 outside
+[PASS] 14100417: employee_wage_median_hourly is always positive
+[PASS] 14100417: employee_wage_median_hourly inside 5 to 200: 0 outside
+
+--- 14100417: availability and completeness ---
+[PASS] 14100417: availability cells equal rows in scope: 169,389
+[PASS] 14100417: fact rows equal availability 'value' cells: 149,214 vs 149,214
+[PASS] 14100417: not_available count matches the cleaning summary: 1,026
+[PASS] 14100417: suppressed count matches the cleaning summary: 19,149
+[PASS] 14100417: unreliable count matches the cleaning summary: 0
+Periods in scope: 29 (1997-01-01 to 2025-01-01)
+[PASS] 14100417: availability covers the full in-scope grid: expected 169,389
+[PASS] 14100417: geographies are Canada and provinces only
+[PASS] 14100417: all occupation codes exist in the crosswalk
+
+--- 14100417: true zeros and ungraded (blank STATUS) values ---
+Zero values by measure and grade:
+none
+Values with no quality grade (blank STATUS): 149,214
+  employee_count: 49,738 rows, 0 zeros, min 0.2, max 18317.6, 8 equal to 100
+  employee_wage_avg_hourly: 49,738 rows, 0 zeros, min 5.75, max 105.18, 0 equal to 100
+  employee_wage_median_hourly: 49,738 rows, 0 zeros, min 5.3, max 112.98, 0 equal to 100
+[PASS] 14100417: every value is ungraded (no A to E grades in this table)
+
+SUMMARY: 82 passed, 1 warnings, 1 failed
