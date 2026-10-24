@@ -53,3 +53,11 @@ CareerScope compares Canadian occupations using official labour-market statistic
 - Check the first quarter with data for continuity of recruitment in 0443.
 - Build the 0444 to 0417 occupation crosswalk.
 - Verify licence terms for the Statistics Canada tables.
+
+## 7. Decisions added during Phase 2
+
+- D9. Trend analysis starts at 2015-04. The 2015-01 quarter is excluded because only 277 of its vacancy cells have a value (273 of them graded E). The first usable Q1 year-over-year comparison is 2017-01 vs 2016-01.
+- D10. An occupation-by-province view is shown only when at least 50 percent of the cells at that level have a reliable (A to D) value in the latest quarter. Otherwise the dashboard shows an "insufficient data" message. To be re-tested across quarters.
+- D11. In 0443, a blank STATUS (an exact zero or a 100 percent total) counts as reliable. 0417 has no quality grades, so D1 does not apply there and only suppression limits what is shown.
+- D12. Continuity of recruitment is analysed from 2020 Q1 only (24 quarters), and any chart using it says so.
+- D13. Hourly wage values outside 5 to 200 dollars are flagged is_suspect with a reason, kept in the processed files, and excluded from analysis by default. In Phase 2 this affected 17 rows in 0443 (several repeat one value at different occupation levels) and none in 0444 or 0417. Bounds only catch extreme errors, so grade filters and sensitivity checks are still needed.
