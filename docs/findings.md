@@ -226,3 +226,15 @@ Rules applied: reliable values are grades A to D (plus exact values with no grad
 
 \- Tables 0444 and 0443 agree
 
+
+## 10. Sensitivity to the quality rule (step 4.1, latest quarter 2026Q2)
+
+Three rules were compared: A to C, A to D (the project rule) and A to E. The rule changes which groups are included, not their values. Source: docs/sensitivity_quality_rule.txt.
+
+- [Verified] Rankings are stable. The top 10 unit groups by vacancies are identical under all three rules. The top 10 by offered wage differs by one group under each alternative rule (9 of 10 the same): computer and information systems managers ($63.20, grade A) enter under A to C and telecommunication carriers managers ($66.75, grade E) enter under A to E.
+- [Verified] Grade E affects coverage far more than volume. 78 of the 393 unit groups with a vacancy count (19.8%) are grade E only, but they hold 18,900 vacancies, 3.6% of the vacancy total in the A to E set. For wages, 19 of 472 groups are grade E only.
+- [Verified] The wage-vacancy rank correlation keeps its sign but changes in size with the rule: -0.41 (A to C, 178 groups), -0.27 (A to D, 312 groups), -0.22 (A to E, 391 groups).
+- [Hypothesis] The weaker correlation under looser rules may reflect noisier vacancy estimates for smaller occupations, which tend to weaken any association. Not tested.
+- [Verified] The 50 percent coverage marker is sensitive to the quality rule at unit-group level. Wage views reach 50 percent in Canada, Ontario, Quebec and British Columbia under A to C and A to D, and also in Alberta (57.9 percent, versus 48.8 percent under A to D) under A to E. Vacancy views reach 50 percent only in Canada under A to D, and in Canada, Ontario and Quebec under A to E.
+- [Verified] At major-group level, wage views reach 50 percent in ten geographies under every rule. Vacancy views reach 50 percent in 4 (A to C), 9 (A to D) and 10 geographies (A to E, adding Newfoundland and Labrador).
+- [Limitation] One quarter (2026Q2) only. No significance test is reported.

@@ -61,3 +61,6 @@ CareerScope compares Canadian occupations using official labour-market statistic
 - D11. In 0443, a blank STATUS (an exact zero or a 100 percent total) counts as reliable. 0417 has no quality grades, so D1 does not apply there and only suppression limits what is shown.
 - D12. Continuity of recruitment is analysed from 2020 Q1 only (24 quarters), and any chart using it says so.
 - D13. Hourly wage values outside 5 to 200 dollars are flagged is_suspect with a reason, kept in the processed files, and excluded from analysis by default. In Phase 2 this affected 17 rows in 0443 (several repeat one value at different occupation levels) and none in 0444 or 0417. Bounds only catch extreme errors, so grade filters and sensitivity checks are still needed.
+
+- D14 (revises D10). Coverage is shown next to every ranking and view, with 50 percent as the well-covered marker rather than a hard cut-off.
+- D15. The dashboard offers a quality-rule selector (A to C, A to D, A to E) with A to D as the default. Step 4.1 showed rankings are stable across the rules but coverage is not.

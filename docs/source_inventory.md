@@ -22,7 +22,7 @@ Created in Phase 1 (data discovery). All Statistics Canada files were downloaded
 - Occupations: NOC 2021 version 1.0. Data from 2023 Q4 were coded directly. Data from 2015 Q1 to 2023 Q3 were converted from earlier NOC versions.
 - Measures: Job vacancies (Number), Average offered hourly wage (Dollars).
 - The web page description says "last 5 quarters". That describes the default web view. The file holds the full history.
-- Licence: to verify (Statistics Canada terms and conditions).
+- Licence: Statistics Canada Open Licence (checked 2026-10-25). Attribution required in the form: Source: Statistics Canada, table title, reference date. Do not imply endorsement by Statistics Canada.
 - Status: inspected. Core source.
 
 ## 14-10-0443-01: Job vacancies, proportion of job vacancies and average offered hourly wage by occupation and selected characteristics, quarterly, unadjusted for seasonality
@@ -37,7 +37,7 @@ Created in Phase 1 (data discovery). All Statistics Canada files were downloaded
 - Characteristics: 48 members in 8 dimensions (see data dictionary). Four members are terminated.
 - Measures: Job vacancies (Number), Proportion of job vacancies (Percent), Average offered hourly wage (Dollars; not published for recruitment strategies).
 - Corrections: Q4 2023 estimates corrected on 2024-04-12.
-- Licence: to verify (Statistics Canada terms and conditions).
+- Licence: Statistics Canada Open Licence (checked 2026-10-25). Attribution required in the form: Source: Statistics Canada, table title, reference date. Do not imply endorsement by Statistics Canada.
 - Status: inspected. Used for the characteristics analysis only.
 
 ## 14-10-0417-01: Employee wages by occupation, annual
@@ -52,7 +52,7 @@ Created in Phase 1 (data discovery). All Statistics Canada files were downloaded
 - Measures: average and median hourly and weekly wage (current dollars, not inflation adjusted), four gender wage ratios, total employees (persons in thousands).
 - Replaces archived table 14-10-0340-01.
 - Known break: processing changes in 2006 introduced a level shift in wage estimates. Use caution comparing before and after 2006.
-- Licence: to verify (Statistics Canada terms and conditions).
+- Licence: Statistics Canada Open Licence (checked 2026-10-25). Attribution required in the form: Source: Statistics Canada, table title, reference date. Do not imply endorsement by Statistics Canada.
 - Status: inspected. Core source for the long-run wage analysis.
 
 ## Job Bank wages (Employment and Social Development Canada)
@@ -62,3 +62,4 @@ Created in Phase 1 (data discovery). All Statistics Canada files were downloaded
 - Update frequency: annual (maintenance listed as "as needed").
 - Licence: Open Government Licence - Canada (verified on the dataset page).
 - Status: not downloaded or inspected. Deferred. It would add a third wage concept and several yearly files that may use different NOC versions.
+
