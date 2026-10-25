@@ -13,7 +13,7 @@ try {
         $adapter = New-Object System.Data.SqlClient.SqlDataAdapter($cmd)
         $ds = New-Object System.Data.DataSet
         [void]$adapter.Fill($ds)
-        foreach ($t in $ds.Tables) { $t | Format-Table -AutoSize | Out-String | Write-Host }
+        foreach ($t in $ds.Tables) { $t | Format-Table -AutoSize | Out-String -Width 400 | Write-Host }
     }
     Write-Host "Finished: $Path"
 }
